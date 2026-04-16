@@ -20,7 +20,7 @@ def login_and_get_text():
 
     try:
         # 注意：这里必须是公网地址，127.0.0.1 GitHub 访问不到
-        url = "	http://6b30eed2.r17.cpolar.top"
+        url = "http://6b30eed2.r17.cpolar.top"
         driver.get(url)
 
         # 账号
