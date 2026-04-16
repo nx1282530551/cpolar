@@ -29,7 +29,7 @@ jobs:
           pip install selenium
 
       - name: 运行爬虫脚本
-        run: python spider.py
+        run:  run: python3 $GITHUB_WORKSPACE/spider.py
 
       - name: 提交更新到仓库
         uses: EndBug/add-and-commit@v9
