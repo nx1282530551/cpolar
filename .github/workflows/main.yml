@@ -1,0 +1,39 @@
+name: 每2分钟抓取并更新
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/2 * * * *'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 安装Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装Edge浏览器
+        run: |
+          sudo apt update
+          sudo apt install -y microsoft-edge-stable
+
+      - name: 安装依赖
+        run: |
+          pip install selenium
+
+      - name: 运行爬虫脚本
+        run: python spider.py
+
+      - name: 提交更新到仓库
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "自动更新内容"
+          committer_name: AutoBot
+          committer_email: bot@github.com
