@@ -1,4 +1,4 @@
-name: 每2分钟抓取并更新
+name: AutoUpdate
 on:
   push:
   workflow_dispatch:
@@ -6,34 +6,30 @@ on:
     - cron: '*/2 * * * *'
 
 jobs:
-  run:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: 拉取代码
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: 安装Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: 安装Edge浏览器
+      - name: Install Edge
         run: |
           sudo apt update
           sudo apt install -y microsoft-edge-stable
 
-      - name: 安装依赖
-        run: |
-          pip install selenium
+      - name: Install dependencies
+        run: pip install selenium
 
-      - name: 运行爬虫脚本
-        run:  run: python3 $GITHUB_WORKSPACE/spider.py
+      - name: Run script
+        run: python3 spider.py
 
-      - name: 提交更新到仓库
+      - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
-          message: "自动更新内容"
-          committer_name: AutoBot
-          committer_email: bot@github.com
+          message: "Auto update"
