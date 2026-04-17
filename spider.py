@@ -19,7 +19,7 @@ def login_and_get_text():
     driver.implicitly_wait(10)
 
     try:
-        # 注意：这里必须是公网地址，127.0.0.1 GitHub 访问不到
+        
         url = "http://7e8b56d5.r17.cpolar.top/#/status/online"
         driver.get(url)
 
@@ -28,14 +28,14 @@ def login_and_get_text():
             EC.presence_of_element_located((By.XPATH, "/html/body/div/div/form/div[2]/div/div/input"))
         )
         username_input.clear()
-        username_input.send_keys("1024775111@qq.com")
+        username_input.send_keys("102477511@qq.com")
 
         # 密码
         password_input = WebDriverWait(driver, 15).until(
             EC.presence_of_element_located((By.XPATH, "/html/body/div/div/form/div[3]/div/div/input"))
         )
         password_input.clear()
-        password_input.send_keys("19970213nx")
+        password_input.send_keys("19")
 
         # 登录
         login_btn = WebDriverWait(driver, 15).until(
