@@ -61,7 +61,7 @@ if __name__ == "__main__":
     update_time = now.strftime("%Y-%m-%d %H:%M:%S")
 
     final = f"""
-# 自动抓取状态（每2分钟更新）
+# 自动更新
 
 当前内容：
 {content}
